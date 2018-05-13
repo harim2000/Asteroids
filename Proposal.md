@@ -15,9 +15,9 @@ library(knitr)
 The data we have decided we wanted to work with is the Asteroids Neo Earth
 Object Web Service API. It is a database focused catalouging asteroids, their
 closest approach date and just overall data about them. The data set is comes
-from the ![NASA JPL Asteroid Team](https://cneos.jpl.nasa.gov/), NASA's center
+from the [NASA JPL Asteroid Team](https://cneos.jpl.nasa.gov/), NASA's center
 for computing asteroid and comet orbits and their odds of Earth impact. It is
-maintained by the ![SpaceRocks Team](http://www.spacerocksapps.org/). They
+maintained by the [SpaceRocks Team](http://www.spacerocksapps.org/). They
 are a "group of science enthusiasts dedicated to sharing space & science data
 in a fun, interactive, meaningful ways". 
 ## Audience
