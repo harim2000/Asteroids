@@ -22,7 +22,6 @@
 * How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?
 What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?
 
-
 * What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
 
 * What major challenges do you anticipate?
