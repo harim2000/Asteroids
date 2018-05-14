@@ -22,7 +22,17 @@
 * How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?
 What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?
 
+  Our data is read through an API from Rest. It returns a json object about each asteroid. 
+The type of data wrangligng we will need to is to reformat the data we have and to reshape so that it is easier to read, analyze and display
+  
 * What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
 
+  Other than the common major libraries, We think we might use either qgraph or tripack to help visualise distances
+
 * What major challenges do you anticipate?
-Not required, but optional: what questions, if any, will you be answering with statistical analysis/machine learning?Project Description
+Not required, but optional: what questions, if any, will you be answering with statistical analysis/machine learning?
+
+  One major challenge we can anticipate is taking into consideration the variability of User Input.
+  Another major challenge we can anticipate is being able to work around dates and times, being as accurate as we can.
+  Another major challenge is being able to properly display distances of asteroid according to what the user inputed
+  or an aggregate mapping of all near asteroids.
