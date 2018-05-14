@@ -14,3 +14,16 @@
     * Which asteroid will be the next to approach Earth?
     * How many asteroids in the past 10 years have approached Earth?
     * How close, and what is the speed of the nearest asteroid to Earth right now?
+
+
+## Technical Description
+
+
+* How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?
+What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?
+
+
+* What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
+
+* What major challenges do you anticipate?
+Not required, but optional: what questions, if any, will you be answering with statistical analysis/machine learning?Project Description
