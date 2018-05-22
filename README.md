@@ -22,12 +22,12 @@
 * How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?
 What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?
 
-  Our data is read through an API from Rest. It returns a json object about each asteroid. 
-The type of data wrangligng we will need to is to reformat the data we have and to reshape so that it is easier to read, analyze and display
+  Our data is read through an API from Rest. It returns a json object about each asteroid's infomation (distance, velocity, and so on). 
+The type of data wrangligng we will need to is to reformat the data we have and to reshape so that it is easier to read, analyze and display. Sorting by asteriods whether they are pottentially dengerous or not can be one step.
   
 * What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
 
-  Other than the common major libraries, We think we might use either qgraph or tripack to help visualise distances
+  Other than the common major libraries, we think we might use either qgraph or tripack to help visualise distances. Also, gmapdistance or scales can be used to show the distance and time travel in the earth scale.
 
 * What major challenges do you anticipate?
 Not required, but optional: what questions, if any, will you be answering with statistical analysis/machine learning?
