@@ -66,6 +66,8 @@ get_graph <- function(start_d, end_d){
     
   }
   
+  # start to make plot
+  
   steps <- list()
   
   plot <- plot_ly()
