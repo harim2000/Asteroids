@@ -11,8 +11,11 @@ shinyUI(navbarPage(theme = shinytheme("sandstone"),
   ),
   
   tabPanel(
-    "Distance Heat/Web Map",
-    tags$h1("Distance Heat/Web Map")
+    "Distance",
+    tags$h1("Distance Analysis Bubble Map"),
+    mainPanel(
+      plotlyOutput("Distance")
+    )
   ),
   
   tabPanel(

@@ -1,9 +1,10 @@
 library(dplyr)
 library(ggplot2)
 library(plotly)
-library(stringr)
 library(jsonlite)
 library(httr)
+library(RColorBrewer)
+
 
 
 source("apikey_raf.r")
@@ -99,3 +100,29 @@ for (i in 2:length(objects)) {
 
 # A single dataframe containing all the information
 completed <- left_join(almost_done, getting_there)
+
+# Plots the graphic
+
+get_graphic <- function() {
+  
+  plot_ly(completed, x = completed$Approach.Date,
+          y = completed$Maximum.Estimated.Diameter..km.,
+          text = paste("Name:", completed$name, 
+                       "<br>Size:", completed$Maximum.Estimated.Diameter..km.,
+                       "km",
+                       "<br>Speed:", completed$Relative.Velocity..km.hr.,
+                       "km/hr",
+                       "<br>Approach Date:", completed$Approach.Date),
+          type = "scatter", mode = "markers", color = completed$name,
+          marker = list(size = (as.numeric(completed$Miss.Distance..km.)
+                                / 1000000),
+                        color = brewer.pal(12, "Paired")),
+          symbol = "circle") %>%
+    layout(title = "Asteroid Graphic", 
+           xaxis = list(showgrid = FALSE,
+                        title = "Approach Date"),
+           yaxis = list(showgrid = FALSE,
+                        title = "Maximum Diameter in Kilometers"))
+}
+
+graph <- get_graphic()
