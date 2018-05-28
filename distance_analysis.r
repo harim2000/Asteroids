@@ -52,13 +52,17 @@ for (i in 1:nrow(near_earth_objects)) {
 }
 
 # Extracts the dataframes from the list in close_approach_data
+# Empty list for the dataframes to be stored in
 objects2 <- list()
 approach <- near_earth_objects %>% select(name, close_approach_data)
 
 # Extracts the Miss Distance information from the original dataframe
 # and puts it into its own list for easier access
+# and adds an empty dataframe into the list if there is no data found
+# in order to maintain the same amount of rows
 for (i in 1:nrow(near_earth_objects)) {
   
+  # Number of different information for a single asteroid
   last <- length(approach$close_approach_data[[i]][["miss_distance"]])
   
   if (last > 0) {
@@ -66,33 +70,32 @@ for (i in 1:nrow(near_earth_objects)) {
       objects2[[i]] <- data.frame(
         "name" = approach$name[[i]],
         "Miss Distance (km)" = approach$close_approach_data[[i]][["miss_distance"]][["kilometers"]],
-        "Miss Distance (km)" = approach$close_approach_data[[i]][["miss_distance"]][["miles"]],
-        stringsAsFactors = FALSE
-      )
-    }
-  } else {
-    next
-  }
-}
-
-
-objects3 <- list()
-
-for (i in 1:nrow(near_earth_objects)) {
-  
-  last <- length(approach$close_approach_data[[i]][["relative_velocity"]])
-  
-  if (last > 0) {
-    for (j in 1:last) {
-      objects3[[i]] <- data.frame(
-        "name" = approach$name[[i]],
+        "Miss Distance (mi)" = approach$close_approach_data[[i]][["miss_distance"]][["miles"]],
         "Relative Velocity (km/hr)" = approach$close_approach_data[[i]][["relative_velocity"]][["kilometers_per_hour"]],
         "Relative Velocity (m/hr)" = approach$close_approach_data[[i]][["relative_velocity"]][["miles_per_hour"]],
+        "Approach Date" = approach$close_approach_data[[i]][["close_approach_date"]],
         stringsAsFactors = FALSE
       )
     }
   } else {
-    next
+    objects2[[i]] <- data.frame()
+    
   }
 }
 
+# Initiates the binding of multiple dataframes into one dataframe
+almost_done <- objects2[[1]]
+# Combines all the dataframes together
+for (i in 2:length(objects2)) {
+  almost_done <- rbind(almost_done, objects2[[i]])
+}
+
+# Initiates the binding of multiple dataframes into one datframe
+getting_there <- objects[[1]]
+# Combines all the dataframes together
+for (i in 2:length(objects)) {
+  getting_there <- rbind(getting_there, objects[[i]])
+}
+
+# A single dataframe containing all the information
+completed <- left_join(almost_done, getting_there)
