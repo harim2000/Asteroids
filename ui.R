@@ -13,9 +13,7 @@ shinyUI(navbarPage(theme = shinytheme("sandstone"),
   tabPanel(
     "Distance",
     tags$h1("Distance Analysis Bubble Map"),
-    mainPanel(
-      plotlyOutput("Distance")
-    )
+    plotlyOutput("Distance", height = "100%")
   ),
   
   tabPanel(
