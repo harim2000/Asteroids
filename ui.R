@@ -11,7 +11,6 @@ shinyUI(navbarPage(
   tabPanel(
     "Introduction",
     tags$h1("Asteroids Data from NASA"),
-    # tags$audio(src = "Light-Years_v001.mp3", type = "audio/mp3", autoplay = NA, controls = NA),
     tags$embed(src = "Deep-Space.mp3", height = 0, width = 0),
     mainPanel(
       tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
@@ -31,7 +30,7 @@ shinyUI(navbarPage(
                     Earth -and merit close watch- are called Near-Earth Objects, or NEOs. 
                     The current known asteroid count is:",
           cite = "NASA",
-          tags$b(" 779,939")
+          tags$b(" 779,944")
         )
       ),
 
@@ -53,8 +52,9 @@ shinyUI(navbarPage(
           " was collected and is maintained by - SpaceRocks Team: 
                     David Greenfield, Arezu Sarvestani, Jason English and Peter Baunach. 
                     We found information about this data from",
-          tags$a(href = "https://www.programmableweb.com/api/nasa-asteroids-neo-feed", "aprogrammableweb"),
-                    "a website that has different kinds of APIS to explore."
+          tags$a(href = "https://www.programmableweb.com/api/nasa-asteroids-neo-feed", 
+                 "aprogrammableweb"),
+                    " a website that has different kinds of APIS to explore."
         )
       ),
 
@@ -64,11 +64,17 @@ shinyUI(navbarPage(
         tags$p("On this web page, there are three main tabs that you can explore and 
                     find out about the current asteroids around the earth:"),
         tags$li(tags$b("Distance")),
-        tags$p("The first tab shows the distance between the earth and asteroids"),
-        tags$li("Static Map"),
+        tags$p("Distance Analysis Bubble Map shows the miss distance of each asteroids. 
+               The size of bubble is the miss distance from the earth. Pointing the bubbles 
+               also show the details of asteroids: name, size, speed, approach date, 
+               and the miss distance."),
+        tags$li(tags$b("Static Map")),
         tags$p("This interactive map shows..."),
-        tags$li("Asteroids"),
-        tags$p("Explore asteroids as a whole.")
+        tags$li(tags$b("Asteroids Overview")),
+        tags$p("Explore asteroids as a whole. Asteroids overview chart is an interactive 
+               chart where you can choose two variables to see the relationship and compare 
+               asteroids. Variables are Aphelion Distance, Perihelion Distance, Orbital Period, 
+               Inclination, Eccentricity, Estimated Diameter (in km).")
       ),
 
       tags$div(
@@ -112,7 +118,7 @@ shinyUI(navbarPage(
 
   # tab for Static Map
   tabPanel(
-    "Static Map based on Date",
+    "Static Map",
     tags$h1("Static Map based on Date"),
     plotlyOutput("Date"),
     "Static Map",
