@@ -12,7 +12,7 @@ shinyUI(navbarPage(
   tabPanel(
     "Introduction",
     tags$h1("Asteroids Data from NASA"),
-    tags$embed(src = "Deep-Space.mp3", height = 0, width = 0),
+    tags$audio(src = "Deep-Space.mp3", height = 0, width = 0),
     mainPanel(
       tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
 
@@ -122,17 +122,8 @@ shinyUI(navbarPage(
     "Static Map",
     tags$h1("Static Map based on Date"),
     sidebarPanel(
-      dateInput("date", label = h3("Select dates to observe: "), 
-                value = "2014-01-01"),
-      selectInput("var_chosen", label = h3("Select variable to observe: "),
-                  choices = list("Absolute Magnitude" = 4,
-                                 "Estimated Maximum Diameter (Feet)" = 
-                                  6,
-                                 "Estimated Minimum Diameter (Feet)" = 
-                                  5,
-                                 "Relative Speed" = 
-                                  10), 
-                  selected = 10)
+      dateInput("date", label = h3("Select dates to observe: "),
+                format = "yyyy-mm-dd")
 
     ),
     mainPanel(

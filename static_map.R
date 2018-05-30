@@ -5,8 +5,9 @@ library(plotly)
 
 source("apikey.R")
 
-get_graph <- function(date, var_viewed){
+get_graph <- function(date){
   
+  date <- toString(date)
   end_d <- as.Date(date, format="%Y-%m-%d")
   
   # number of data sets from dates requested
@@ -28,7 +29,7 @@ get_graph <- function(date, var_viewed){
   days_observed <- days_observed[[1]]
   
 
-      # Get number of asteroids
+  # Get number of asteroids
   number_of_asteroids <- length(days_observed$name)
   asteroids <- data.frame(rows = c(1:number_of_asteroids),stringsAsFactors = F)
   
@@ -69,30 +70,14 @@ get_graph <- function(date, var_viewed){
   pot_dan_color <- c("red", "green")
   pot_dan_color <- setNames(pot_dan_color, c("TRUE", "FALSE"))
   
-  plot <- plot_ly(asteroids, x = asteroids[9], #sets x & y data
-                  y = asteroids[var_viewed], 
-                  type = "scatter", 
-                  mode = "markers", 
-                  text = ~paste("<br>Name: ", name, # Sets the hover text for 
-                                "<br>ID: ", id,     # each marker
-                                "<br>", date,
-                                "<br>Absolute Magnitude: ", 
-                                absolute_magnitude, 
-                                "<br>Estimated Max Diameter (Feet): ",
-                                round(estimated_diam_max_feet, 2),
-                                "<br>Estimated Min Diameter (Feet): ",
-                                round(estimated_diam_min_feet, 2),
-                                "<br>Potentially Dangerous: ",
-                                potentially_dangerous,
-                                "<br>Orbiting Body: ",
-                                orbiting_body),
-                  color = ~potentially_dangerous, 
-                  colors = ~pot_dan_color,
-                  xaxis = list(autotick = FALSE),
-                  yaxis = list(autotick = FALSE)) %>% 
-    layout(xaxis = list(title = "Miss Distance (miles)"),
-           yaxis = list(title = colnames(asteroids)[var_viewed]))
+  plot <- plot_ly(asteroids, x = asteroids[["name"]], #sets x & y data
+                  y = asteroids[["absolute_magnitude"]], 
+                  type = "bar") %>%
+    layout(title = date,
+           xaxis = list(title = "Asteroid Name"),
+           yaxis = list(title = "Absolute Magnitude"))
+  
   
   plot
   
-}  
+}
