@@ -2,7 +2,7 @@
 library(shiny)
 library(shinythemes)
 
-shinyUI(navbarPage(theme = shinytheme("sandstone"),
+shinyUI(navbarPage(theme = shinytheme("cyborg"),
                    "NASA Asteriods Data",
   # Create a tab panel for your map
   tabPanel(
