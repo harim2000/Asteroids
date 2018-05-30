@@ -8,6 +8,7 @@ source("apikey.R")
 get_graph <- function(date){
   
   date <- toString(date)
+  #date <- "2058-03-30"
   end_d <- as.Date(date, format="%Y-%m-%d")
   
   # number of data sets from dates requested
@@ -72,10 +73,26 @@ get_graph <- function(date){
   
   plot <- plot_ly(asteroids, x = asteroids[["name"]], #sets x & y data
                   y = asteroids[["absolute_magnitude"]], 
-                  type = "bar") %>%
-    layout(title = date,
+                  type = "bar",
+                  text = ~paste("<br>Name: ", asteroids[["name"]], # Sets the hover text for 
+                                "<br>ID: ", asteroids[["id"]],     # each marker
+                                "<br>", asteroids[["date"]],
+                                "<br>Absolute Magnitude: ", 
+                                asteroids[["absolute_magnitude"]], 
+                                "<br>Estimated Max Diameter (Feet): ",
+                                (asteroids[["estimated_diam_max_feet"]]),
+                                "<br>Estimated Min Diameter (Feet): ",
+                                (asteroids[["estimated_diam_min_feet"]]),
+                                "<br>Potentially Dangerous: ",
+                                asteroids[["potentially_dangerous"]],
+                                "<br>Orbiting Body: ",
+                                asteroids[["orbiting_body"]]),
+                  color = asteroids[["potenially_dangerous"]],
+                  colors = pot_dan_color) %>%
+    layout(title = paste(end_d - 7, "through", date),
            xaxis = list(title = "Asteroid Name"),
            yaxis = list(title = "Absolute Magnitude"))
+  
   
   
   plot

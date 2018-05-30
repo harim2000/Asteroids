@@ -70,7 +70,8 @@ shinyUI(navbarPage(
                also show the details of asteroids: name, size, speed, approach date, 
                and the miss distance."),
         tags$li(tags$b("Static Map")),
-        tags$p("This interactive map shows..."),
+        tags$p("This interactive graphic shows the information on passing asteroids
+               on a given date and its previous week"),
         tags$li(tags$b("Asteroids Overview")),
         tags$p("Explore asteroids as a whole. Asteroids overview chart is an interactive 
                chart where you can choose two variables to see the relationship and compare 
