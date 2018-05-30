@@ -1,4 +1,5 @@
 source("distance_analysis.r")
+#source("static_map.R")
 
 
 
@@ -12,6 +13,7 @@ shinyServer(function(input, output) {
     )
   
   # Render Static Map based on Date
+
   
   
   # Render Information Tab about the asteroids as a whole

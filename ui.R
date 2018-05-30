@@ -13,12 +13,17 @@ shinyUI(navbarPage(theme = shinytheme("sandstone"),
   tabPanel(
     "Distance",
     tags$h1("Distance Analysis Bubble Map"),
-    plotlyOutput("Distance", height = "100%")
+    tags$p("This is a graphic of asteroids dataset from the NASA.
+           It's main focus is on the miss distance of each asteroid.
+           The size of the circle represents how much distance will
+           each asteroid miss the Earth by."),
+    plotlyOutput("Distance")
   ),
   
   tabPanel(
     "Static Map based on Date",
-    tags$h1("Static Map based on Date")
+    tags$h1("Static Map based on Date"),
+    plotlyOutput("Date")
   ),
   
   tabPanel(
