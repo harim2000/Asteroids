@@ -12,7 +12,6 @@ resource <- "browse"
 query_params <- list(api_key = api)
 endpoint <- paste0(base_uri, resource)
 
-
 # Performs the GET request to retrieve the information from
 # the NASA API
 response <- GET(endpoint, query = query_params)
