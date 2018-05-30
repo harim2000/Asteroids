@@ -89,8 +89,21 @@ shinyUI(navbarPage(theme = shinytheme("cyborg"),
   
   # tab for Static Map
   tabPanel(
-    "Static Map",
-    tags$h1("Static Map based on the Data")
+    "Static Map based on Date",
+    tags$h1("Static Map based on Date"),
+    sidebarPanel(
+      dateRangeInput("dates", label = h3("Select dates to observe: ")),
+      selectInput("var_chosen", label = h3("Select variable to observe: "),
+                  choices = list("Absolute Magnitude" = 1,
+                                 "Estimated Maximum Diameter (Feet)" = 2,
+                                 "Estimated Minimum Diameter (Feet)" = 3,
+                                 "Relative Speed" = 4), 
+                  selected = 4)
+    ),
+    mainPanel(
+      plotlyOutput("static")
+    )
+    
   ),
   
   # tab for Asteroids Information
