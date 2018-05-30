@@ -36,3 +36,6 @@ Not required, but optional: what questions, if any, will you be answering with s
   Another major challenge we can anticipate is being able to work around dates and times, being as accurate as we can.
   Another major challenge is being able to properly display distances of asteroid according to what the user inputed
   or an aggregate mapping of all near asteroids.
+  
+## Link to the Website
+https://rafael-agas.shinyapps.io/Info-201-Final-Project/
