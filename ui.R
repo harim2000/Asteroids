@@ -4,6 +4,7 @@ library(shinythemes)
 
 shinyUI(navbarPage(theme = shinytheme("cyborg"),
                    "NASA Asteroids Data",
+  
   # tab for Introduction
   tabPanel(
     "Introduction",
