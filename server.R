@@ -14,12 +14,11 @@ shinyServer(function(input, output) {
 
   # Render Static Map based on Date
 
-  output$var_chosen <- renderPrint({
-    input$var_chosen
-  })
   output$dates <- renderPrint({
     input$dates
   })
+  
+
 
   output$static <- renderPlotly(get_graph(input$dates, input$var_chosen))
 
