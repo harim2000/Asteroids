@@ -4,7 +4,7 @@ library(dplyr)
 library(plotly)
 library(lubridate)
 
-source("apikey.R")
+source("apikey.r")
 
 
 get_graph <- function(date){
@@ -17,7 +17,7 @@ get_graph <- function(date){
 
   # get data from api
   url <- "https://api.nasa.gov/neo/rest/v1/feed"
-  query_params <- list(start_date = start_d,
+  query_params <- list(start_date = end_d - 7,
                        end_date = date,
                        api_key = apikey)
 
@@ -83,15 +83,12 @@ get_graph <- function(date){
                                 "<br>Potentially Dangerous: ",
                                 asteroids[["potentially_dangerous"]],
                                 "<br>Orbiting Body: ",
-                                orbiting_body,
+                                asteroids[["orbiting_body"]],
                                 "<br> Miss Distance: ",
-                                miss_distance_a, " miles"),
-                  color = ~potentially_dangerous,
-                  colors = ~pot_dan_color,
-                  xaxis = list(autotick = FALSE),
-                  yaxis = list(autotick = FALSE)) %>%
-    layout(xaxis = list(title = "Miss Distance (miles)"),
-           yaxis = list(title = colnames(asteroids)[var_viewed]))
+                                asteroids[["miss_distance_a"]], " miles")) %>%
+    layout(title = paste(end_d - 7, "through", end_d),
+           xaxis = list(title = "Miss Distance (miles)"),
+           yaxis = list(title = "Absolute Magnitude"))
 
   plot
 }
