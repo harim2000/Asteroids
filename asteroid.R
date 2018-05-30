@@ -3,7 +3,7 @@ library(httr)
 library(dplyr)
 library(plotly)
 library(ggrepel)
-source("apikey_justin.R")
+source("apikey.R")
 
 # Sets up the parameters and queries for the API and
 # GET request
