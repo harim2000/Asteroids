@@ -25,7 +25,7 @@ shinyUI(navbarPage(
                     small to be called planets. Tens of thousands of these minor planets 
                     are gathered in the main asteroid belt, a vast doughnut-shaped ring 
                     between the orbits of Mars and Jupiter. Asteroids that pass close to 
-                    Earth‚<U+0080><U+0094>and merit close watch‚<U+0080><U+0094>are called Near-Earth Objects, or NEOs. 
+                    Earth√¢<U+0080><U+0094>and merit close watch√¢<U+0080><U+0094>are called Near-Earth Objects, or NEOs. 
                     The current known asteroid count is:",
           cite = "NASA",
           tags$b(" 779,939")
