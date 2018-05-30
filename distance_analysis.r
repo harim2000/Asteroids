@@ -6,7 +6,7 @@ library(RColorBrewer)
 
 
 
-source("apikey_raf.r")
+source("apikey.R")
 
 # Sets up the parameters and queries for the API and
 # GET request

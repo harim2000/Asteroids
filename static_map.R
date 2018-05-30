@@ -3,11 +3,15 @@ library(httr)
 library(dplyr)
 library(plotly)
 
-source("apikey_harim.R")
+source("apikey.R")
 
-get_graph <- function(start_d, end_d, day_viewed, var_viewed){
+get_graph <- function(dates, var_viewed){
 
-  # test dates
+  start_d <- dates[[1]]
+  end_d <- dates[[2]]
+  
+  day_viewed <- 1
+  
   start_d <- as.Date(start_d, format="%Y-%m-%d")
   end_d <- as.Date(end_d, format="%Y-%m-%d")
   
@@ -18,7 +22,7 @@ get_graph <- function(start_d, end_d, day_viewed, var_viewed){
   url <- "https://api.nasa.gov/neo/rest/v1/feed"
   query_params <- list(start_date = start_d,
                        end_date = end_d,
-                       api_key = api_key_nasa)
+                       api_key = apikey)
   
   response <- GET(url, query = query_params)
   
@@ -41,12 +45,12 @@ get_graph <- function(start_d, end_d, day_viewed, var_viewed){
        "name" = days_observed[[i]]$name,
        "id" = days_observed[[i]]$neo_reference_id,
        "url" = days_observed[[i]]$nasa_jpl_url,
-       "absolute magnitude" = days_observed[[i]]$absolute_magnitude_h,
-       "estimated diam min (feet)" = days_observed[[i]]$estimated_diameter$
+       "absolute_magnitude" = days_observed[[i]]$absolute_magnitude_h,
+       "estimated_diam_min_feet" = days_observed[[i]]$estimated_diameter$
          feet$estimated_diameter_min,
-       "estimated diam max (feet)" = days_observed[[i]]$estimated_diameter$
+       "estimated_diam_max_feet" = days_observed[[i]]$estimated_diameter$
          feet$estimated_diameter_max,
-       "potentially dangerous" = days_observed[[i]]$
+       "potentially_dangerous" = days_observed[[i]]$
          is_potentially_hazardous_asteroid,
        stringsAsFactors = F)
     
@@ -71,29 +75,31 @@ get_graph <- function(start_d, end_d, day_viewed, var_viewed){
     
   }
   
+  
   # start to make plot
   
   plot <- plot_ly(asteroids[[day_viewed]], x = ~miss_distance, #sets x & y data
-                  y = ~asteroids[[day_viewed]][, var_viewed], 
+                  y = ~asteroids[[day_viewed]][[var_viewed]], 
                   type = "scatter", 
                   mode = "markers", 
                   text = ~paste("<br>Name: ", name, # Sets the hover text for 
                                 "<br>ID: ", id,     # each marker
                                 "<br>Absolute Magnitude: ", 
-                                absolute.magnitude, 
+                                absolute_magnitude, 
                                 "<br>Estimated Max Diameter (Feet): ",
-                                round(estimated.diam.max..feet., 2),
+                                round(estimated_diam_max_feet, 2),
                                 "<br>Estimated Min Diameter (Feet): ",
-                                round(estimated.diam.max..feet., 2),
+                                round(estimated_diam_max_feet, 2),
                                 "<br>Potentially Dangerous: ",
-                                potentially.dangerous,
+                                potentially_dangerous,
                                 "<br>Orbiting Body: ",
                                 orbiting_body),
-                  color = ~potentially.dangerous, colors = c("green", "red"),
+                  color = ~potentially_dangerous, colors = c("green", "red"),
                   xaxis = list(autotick = FALSE),
                   yaxis = list(autotick = FALSE)) %>% 
     layout(xaxis = list(title = "Miss Distance (miles)"),
-           yaxis = list(title = paste(var_viewed)))
+           yaxis = list(title = colnames(asteroids[[1]])[var_viewed]))
   
+  plot
   
 }  
