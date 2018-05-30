@@ -70,8 +70,9 @@ shinyUI(navbarPage(
                also show the details of asteroids: name, size, speed, approach date, 
                and the miss distance."),
         tags$li(tags$b("Static Map")),
-        tags$p("This interactive graphic shows the information on passing asteroids
-               on a given date and its previous week"),
+        tags$p("This interactive map shows the relationships between different 
+               sets of data for todays asteroids. It runs through the given
+               date and its previous week"),
         tags$li(tags$b("Asteroids Overview")),
         tags$p("Explore asteroids as a whole. Asteroids overview chart is an interactive 
                chart where you can choose two variables to see the relationship and compare 
@@ -121,11 +122,10 @@ shinyUI(navbarPage(
   # tab for Static Map
   tabPanel(
     "Static Map",
-    tags$h1("Static Map based on Date"),
+    tags$h1("Static Map based on Today's Date"),
     sidebarPanel(
       dateInput("date", label = h3("Select dates to observe: "),
                 format = "yyyy-mm-dd")
-
     ),
     mainPanel(
       plotlyOutput("static")

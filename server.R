@@ -13,8 +13,7 @@ shinyServer(function(input, output) {
   )
 
   # Render Static Map based on Date
-
-
+  
   output$static <- renderPlotly(get_graph(input$dates))
 
   # Render Information Tab about the asteroids as a whole
