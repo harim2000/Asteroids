@@ -103,7 +103,7 @@ shinyUI(navbarPage(theme = shinytheme("cyborg"),
           "col1",
           label = "Asteroid Data # 1",
           choices = colnames(relevant)
-        ),
+        ), 
         
         selectInput(
           "col2",
