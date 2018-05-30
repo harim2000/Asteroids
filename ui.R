@@ -20,8 +20,10 @@ shinyUI(navbarPage(
       tags$div(
         class = "paragraph", checked = NA,
         tags$h3("What are Asteroids"),
-        tags$p("Asteroids literally means star-like. According to NASA's definition: "),
-        tags$img(src = "pic2.jpg", width = "347px", height = "196px", align = "right"),
+        tags$p("Asteroids literally means star-like, sometimes called minor planets, 
+               are rocky remnants left over from the early formation of our solar system 
+               about 4.6 billion years ago. According to NASA's definition: "),
+        tags$img(src = "pic2.jpg", width = "330px", height = "186px", align = "right"),
         tags$blockquote(" Asteroids are rocky, airless worlds that orbit our sun, but are too 
                     small to be called planets. Tens of thousands of these minor planets 
                     are gathered in the main asteroid belt, a vast doughnut-shaped ring 
@@ -50,8 +52,9 @@ shinyUI(navbarPage(
           "The", tags$a(href = "https://api.nasa.gov/index.html", "API"),
           " was collected and is maintained by - SpaceRocks Team: 
                     David Greenfield, Arezu Sarvestani, Jason English and Peter Baunach. 
-                    We found information about this data from aprogrammableweb, 
-                    a website that has different kinds of APIS to explore."
+                    We found information about this data from",
+          tags$a(href = "https://www.programmableweb.com/api/nasa-asteroids-neo-feed", "aprogrammableweb"),
+                    "a website that has different kinds of APIS to explore."
         )
       ),
 
@@ -64,9 +67,8 @@ shinyUI(navbarPage(
         tags$p("The first tab shows the distance between the earth and asteroids"),
         tags$li("Static Map"),
         tags$p("This interactive map shows..."),
-        tags$li("Asteroids Information"),
-        tags$p("This allows you to explore the detail of a specific asteroids from 
-                    the data. It includes the distance from the earth")
+        tags$li("Asteroids"),
+        tags$p("Explore asteroids as a whole.")
       ),
 
       tags$div(
@@ -137,7 +139,7 @@ shinyUI(navbarPage(
 
   # tab for Asteroids Information
   tabPanel(
-    "The Asteroids",
+    "Asteroids",
     sidebarLayout(
       sidebarPanel(
         tags$h1("Asteroid Overview"),
