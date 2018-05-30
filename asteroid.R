@@ -3,13 +3,15 @@ library(httr)
 library(dplyr)
 library(plotly)
 library(ggrepel)
+library(ggplot2)
+library(ggthemes)
 source("apikey.R")
 
 # Sets up the parameters and queries for the API and
 # GET request
 base_uri <- "https://api.nasa.gov/neo/rest/v1/neo/"
 resource <- "browse"
-query_params <- list(api_key = api)
+query_params <- list(api_key = apikey)
 endpoint <- paste0(base_uri, resource)
 
 # Performs the GET request to retrieve the information from

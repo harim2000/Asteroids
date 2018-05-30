@@ -1,6 +1,7 @@
 # ui.R
 library(shiny)
 library(shinythemes)
+library(plotly)
 
 shinyUI(navbarPage(
   theme = shinytheme("cyborg"),
@@ -98,30 +99,22 @@ shinyUI(navbarPage(
   # tab for Distance Map
   tabPanel(
     "Distance",
-<<<<<<< HEAD
     tags$h1("Distance Analysis Bubble Map"),
     tags$p("This is a graphic of asteroids dataset from the NASA.
            It's main focus is on the miss distance of each asteroid.
            The size of the circle represents how much distance will
            each asteroid miss the Earth by."),
-    plotlyOutput("Distance")
-=======
+    plotlyOutput("Distance"),
     tags$h1("Distance Analysis Bubble Map")
->>>>>>> 741e280990aa9cf7cba208ee1014a4aac1b31645
   ),
 
   # tab for Static Map
   tabPanel(
-<<<<<<< HEAD
-<<<<<<< HEAD
     "Static Map based on Date",
     tags$h1("Static Map based on Date"),
-    plotlyOutput("Date")
-=======
+    plotlyOutput("Date"),
     "Static Map",
-    tags$h1("Static Map based on the Data")
->>>>>>> refs/remotes/origin/master
-=======
+    tags$h1("Static Map based on the Data"),
     "Static Map based on Date",
     tags$h1("Static Map based on Date"),
     sidebarPanel(
@@ -140,7 +133,6 @@ shinyUI(navbarPage(
     mainPanel(
       plotlyOutput("static")
     )
->>>>>>> 741e280990aa9cf7cba208ee1014a4aac1b31645
   ),
 
   # tab for Asteroids Information

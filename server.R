@@ -1,11 +1,6 @@
 source("asteroid.r")
 source("distance_analysis.r")
-<<<<<<< HEAD
-#source("static_map.R")
-
-=======
 source("static_map.R")
->>>>>>> 741e280990aa9cf7cba208ee1014a4aac1b31645
 
 
 # Start shinyServer
@@ -18,11 +13,6 @@ shinyServer(function(input, output) {
   )
 
   # Render Static Map based on Date
-<<<<<<< HEAD
-
-  
-  
-=======
   output$var_chosen <- renderPrint({
     input$var_chosen
   })
@@ -32,7 +22,6 @@ shinyServer(function(input, output) {
 
   output$static <- renderPlotly(get_graph(input$dates, input$var_chosen))
 
->>>>>>> 741e280990aa9cf7cba208ee1014a4aac1b31645
   # Render Information Tab about the asteroids as a whole
   output$scatter <- renderPlot({
     title <- paste0("Relationship between ", input$col1, " and ", input$col2)
