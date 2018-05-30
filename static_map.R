@@ -5,100 +5,93 @@ library(plotly)
 
 source("apikey.R")
 
-get_graph <- function(dates, var_viewed){
-
-  start_d <- dates[[1]]
-  end_d <- dates[[2]]
+get_graph <- function(date, var_viewed){
   
-  day_viewed <- 1
-  
-  start_d <- as.Date(start_d, format="%Y-%m-%d")
-  end_d <- as.Date(end_d, format="%Y-%m-%d")
+  end_d <- as.Date(date, format="%Y-%m-%d")
   
   # number of data sets from dates requested
-  days <- as.numeric(end_d - start_d) + 1
   
   # get data from api
   url <- "https://api.nasa.gov/neo/rest/v1/feed"
-  query_params <- list(start_date = start_d,
+  query_params <- list(start_date = end_d - 7,
                        end_date = end_d,
                        api_key = apikey)
   
   response <- GET(url, query = query_params)
   
   response_content <- content(response, "text")
-  data <- fromJSON(response_content)
+  data_harim <- fromJSON(response_content)
   
   # length of asteroids list will be equal to days
-  days_observed <- data$near_earth_objects
+  days_observed <- data_harim$near_earth_objects[date]
   
-  asteroids <- list()
+  days_observed <- days_observed[[1]]
   
-  for (i in 1:days){
+
+      # Get number of asteroids
+  number_of_asteroids <- length(days_observed$name)
+  asteroids <- data.frame(rows = c(1:number_of_asteroids),stringsAsFactors = F)
+  
+  # make a list of asteroids with all the dates requested, inside of each date
+  # is a data frame full of the asteroids observed that day
+  asteroids$name <- days_observed$name
+  asteroids$id <- days_observed$neo_reference_id
+  asteroids$url <- days_observed$nasa_jpl_url
+  asteroids$absolute_magnitude <- days_observed$absolute_magnitude_h
+  asteroids$estimated_diam_min_feet <- days_observed$
+       estimated_diameter$feet$estimated_diameter_min
+  asteroids$estimated_diam_max_feet <- days_observed$
+       estimated_diameter$feet$estimated_diameter_max
+  asteroids$potentially_dangerous <- days_observed$
+       is_potentially_hazardous_asteroid
+  
+  # Gets specific data for the specific asteroid 
+ 
+  
+  for (j in 1:length(days_observed$close_approach_data)){
     
-    # Get number of asteroids
-    number_of_asteroids <- length(days_observed[[i]]$name)
+    asteroids$miss_distance_a[[j]] <- days_observed$
+      close_approach_data[[j]]$miss_distance$miles
     
-    # make a list of asteroids with all the dates requested, inside of each date
-    # is a data frame full of the asteroids observed that day
-    asteroids[[i]] <- data.frame(
-       "name" = days_observed[[i]]$name,
-       "id" = days_observed[[i]]$neo_reference_id,
-       "url" = days_observed[[i]]$nasa_jpl_url,
-       "absolute_magnitude" = days_observed[[i]]$absolute_magnitude_h,
-       "estimated_diam_min_feet" = days_observed[[i]]$estimated_diameter$
-         feet$estimated_diameter_min,
-       "estimated_diam_max_feet" = days_observed[[i]]$estimated_diameter$
-         feet$estimated_diameter_max,
-       "potentially_dangerous" = days_observed[[i]]$
-         is_potentially_hazardous_asteroid,
-       stringsAsFactors = F)
+    asteroids$relative_velocity_mph[[j]] <- days_observed$
+      close_approach_data[[j]]$relative_velocity$miles_per_hour
     
-    # Gets specific data for the specific asteroid 
-   
-    
-    for (j in 1:length(days_observed[[i]]$close_approach_data)){
-      
-      asteroids[[i]]$miss_distance[[j]] <- days_observed[[i]]$
-        close_approach_data[[j]]$miss_distance$miles
-      
-      asteroids[[i]]$relative_velocity_mph[[j]] <- days_observed[[i]]$
-        close_approach_data[[j]]$relative_velocity$miles_per_hour
-      
-      asteroids[[i]]$orbiting_body[[j]] <- days_observed[[i]]$
-        close_approach_data[[j]]$orbiting_body
-                                        
-    }
-    
-    # set list value names to be the date observed
-    names(asteroids)[i] <- paste(start_d + i - 1)
-    
+    asteroids$orbiting_body[[j]] <- days_observed$
+      close_approach_data[[j]]$orbiting_body
+                                      
   }
+    
+  
   
   
   # start to make plot
+    
+  pot_dan_color <- c("red", "green")
+  pot_dan_color <- setNames(pot_dan_color, c("TRUE", "FALSE"))
   
-  plot <- plot_ly(asteroids[[day_viewed]], x = ~miss_distance, #sets x & y data
-                  y = ~asteroids[[day_viewed]][[var_viewed]], 
+  plot <- plot_ly(asteroids, x = asteroids[9], #sets x & y data
+                  y = asteroids[var_viewed], 
                   type = "scatter", 
                   mode = "markers", 
                   text = ~paste("<br>Name: ", name, # Sets the hover text for 
                                 "<br>ID: ", id,     # each marker
+                                "<br>", date,
                                 "<br>Absolute Magnitude: ", 
                                 absolute_magnitude, 
                                 "<br>Estimated Max Diameter (Feet): ",
                                 round(estimated_diam_max_feet, 2),
                                 "<br>Estimated Min Diameter (Feet): ",
-                                round(estimated_diam_max_feet, 2),
+                                round(estimated_diam_min_feet, 2),
                                 "<br>Potentially Dangerous: ",
                                 potentially_dangerous,
                                 "<br>Orbiting Body: ",
                                 orbiting_body),
-                  color = ~potentially_dangerous, colors = c("green", "red"),
+                  color = ~potentially_dangerous, 
+                  colors = ~pot_dan_color,
                   xaxis = list(autotick = FALSE),
                   yaxis = list(autotick = FALSE)) %>% 
     layout(xaxis = list(title = "Miss Distance (miles)"),
-           yaxis = list(title = colnames(asteroids[[1]])[var_viewed]))
+           yaxis = list(title = colnames(asteroids)[var_viewed]))
   
   plot
   

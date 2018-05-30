@@ -92,13 +92,17 @@ shinyUI(navbarPage(theme = shinytheme("cyborg"),
     "Static Map based on Date",
     tags$h1("Static Map based on Date"),
     sidebarPanel(
-      dateRangeInput("dates", label = h3("Select dates to observe: ")),
+      dateInput("date", label = h3("Select dates to observe: "), 
+                value = "2014-01-01"),
       selectInput("var_chosen", label = h3("Select variable to observe: "),
-                  choices = list("Absolute Magnitude" = 1,
-                                 "Estimated Maximum Diameter (Feet)" = 2,
-                                 "Estimated Minimum Diameter (Feet)" = 3,
-                                 "Relative Speed" = 4), 
-                  selected = 4)
+                  choices = list("Absolute Magnitude" = 4,
+                                 "Estimated Maximum Diameter (Feet)" = 
+                                  6,
+                                 "Estimated Minimum Diameter (Feet)" = 
+                                  5,
+                                 "Relative Speed" = 
+                                  10), 
+                  selected = 10)
     ),
     mainPanel(
       plotlyOutput("static")
