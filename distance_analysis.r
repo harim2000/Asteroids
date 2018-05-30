@@ -1,5 +1,6 @@
 library(dplyr)
 library(plotly)
+library(ggplot2)
 library(jsonlite)
 library(httr)
 library(RColorBrewer)
@@ -111,17 +112,27 @@ get_graphic <- function() {
                        "km",
                        "<br>Speed:", completed$Relative.Velocity..km.hr.,
                        "km/hr",
-                       "<br>Approach Date:", completed$Approach.Date),
+                       "<br>Approach Date:", completed$Approach.Date,
+                       "<br> Miss Distance in km:",
+                       completed$Miss.Distance..km., "km"),
           type = "scatter", mode = "markers", color = completed$name,
           marker = list(size = (as.numeric(completed$Miss.Distance..km.)
                                 / 1000000),
-                        color = brewer.pal(12, "Paired")),
-          symbol = "circle") %>%
+                        color = brewer.pal(12, "Set3")),
+          symbol = "circle",
+          height = 1080) %>%
     layout(title = "Asteroid Graphic", 
            xaxis = list(showgrid = FALSE,
                         title = "Approach Date"),
            yaxis = list(showgrid = FALSE,
-                        title = "Maximum Diameter in Kilometers"))
+                        title = "Maximum Diameter in Kilometers"),
+           legend = list(orientation = 'h'),
+           margin(b = 100))
 }
 
 graph <- get_graphic()
+graph
+
+
+
+
