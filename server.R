@@ -1,4 +1,4 @@
-source("asteroid.r")
+source("asteroid.R")
 source("distance_analysis.r")
 source("static_map.R")
 

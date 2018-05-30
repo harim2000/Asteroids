@@ -2,6 +2,7 @@
 library(shiny)
 library(shinythemes)
 library(plotly)
+source("asteroid.R")
 
 shinyUI(navbarPage(
   theme = shinytheme("cyborg"),
@@ -119,11 +120,6 @@ shinyUI(navbarPage(
   # tab for Static Map
   tabPanel(
     "Static Map",
-    tags$h1("Static Map based on Date"),
-    plotlyOutput("Date"),
-    "Static Map",
-    tags$h1("Static Map based on the Data"),
-    "Static Map based on Date",
     tags$h1("Static Map based on Date"),
     sidebarPanel(
       dateInput("date", label = h3("Select dates to observe: "), 
