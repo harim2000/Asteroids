@@ -1,4 +1,5 @@
-div {
+body {
+  font-family: "Times New Roman", Times, serif;
   background: url(pic1.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -6,30 +7,55 @@ div {
   background-size: cover;
 }
 
-p1 {
-  font-size: 40px;
+h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h3 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h4 {
+  font-family: "Times New Roman", Times, serif;
 }
 
 p {
-  font-size: 25px;
-  color: white;
-  background-color: rgba(0, 0, 255, 0.3);
-}
-
-.data_set {
-  text-align: left;
-}
-
-.about_asteroids {
-  text-align: left;
-}
-
-.sidebar {
-  position:fixed;
-}
-
-h2:hover {
   font-size: 20px;
-  color: white-space-collapse;
-  text-shadow: 2px 2px 4px #000000;
+  color: white;
 }
+
+b {
+  font-size: 20px;
+  color: white;
+}
+
+a {
+  font-size: 20px;
+  color: white;
+}
+
+li {
+  font-size: 22px;
+  color: white;
+}
+
+blockquote {
+  font-size: 20px;
+  color:white;
+}
+
+hr {
+  border-top: 2px solid white;
+}
+
+.paragraph {
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.bibliography {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
