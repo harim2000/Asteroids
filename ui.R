@@ -83,8 +83,8 @@ shinyUI(navbarPage(theme = shinytheme("cyborg"),
   # tab for Distance Map
   tabPanel(
     "Distance",
-    tags$h1("Distance Analysis Bubble Map"),
-    plotlyOutput("Distance", height = "100%")
+    tags$h1("Distance Analysis Bubble Map")
+    
   ),
   
   # tab for Static Map
@@ -96,6 +96,22 @@ shinyUI(navbarPage(theme = shinytheme("cyborg"),
   # tab for Asteroids Information
   tabPanel(
     "The Asteroids",
-    tags$h1("Detailed information about the asteroids as a whole")
+    sidebarLayout(
+      sidebarPanel(
+        tags$h1("Asteroid Overview"),
+        selectInput(
+          "col1",
+          label = "Asteroid Data # 1",
+          choices = colnames(relevant)
+        ),
+        
+        selectInput(
+          "col2",
+          label = "Asteroid Data # 2",
+          choices = colnames(relevant)
+        )
+      ),
+      mainPanel(plotOutput("scatter"))
+    )
   )
 ))
